@@ -8,6 +8,9 @@ Live News shows tracking and explore.
 - Get must general news from api
 - Get specific news when clicked on the category such as: business, health, sports, technical sciences
 - Search specific news by country name .
+
+### bounes
+
 - Add to favored list Using ( localStorage )
 - Remove from favored list Using ( localStorage )
 
