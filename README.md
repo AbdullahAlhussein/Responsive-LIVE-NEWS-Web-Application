@@ -9,7 +9,7 @@ Live News shows tracking and explore.
 - Get specific news when clicked on the category such as: business, health, sports, technical sciences
 - Search specific news by country name .
 
-### bounes
+  ### BONUS
 
 - Add to favored list Using ( localStorage )
 - Remove from favored list Using ( localStorage )
