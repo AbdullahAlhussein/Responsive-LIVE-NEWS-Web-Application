@@ -5,7 +5,7 @@ Live News shows tracking and explore.
 
 ## Functionalities in the website:
 - Search with auto complete from api.
-- Get must general news from api
+- Get must general news from api. 
 - Get specific news when clicked on the category such as: business, health, sports, technical sciences
 - Search specific news by country name .
 
@@ -39,5 +39,7 @@ Project Link: [LIVE NEWS](https://abdullahalhussein.github.io/News/)
 
 My Name - Abdullah AlHuusein
 
-Email - abdullah30alhussein@gmail.com
+Email - 📧 abdullah30alhussein@gmail.com
+
+Linkedin - 👔 [LinkedIn](https://www.linkedin.com/in/abdullah-alhussein1)
 
