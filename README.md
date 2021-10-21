@@ -37,5 +37,6 @@ Project Link: [LIVE NEWS](https://abdullahalhussein.github.io/News/)
 
 ## Contact
 
-Your Name - abdullah30alhussein@gmail.com
+Your Name - Abdullah AlHuusein
+Email - abdullah30alhussein@gmail.com
 
