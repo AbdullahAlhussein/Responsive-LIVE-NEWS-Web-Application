@@ -3,6 +3,9 @@
 
 Live News shows tracking and explore.
 
+![awesome](https://user-images.githubusercontent.com/70335592/138341846-5dba58b9-5918-4842-a1fa-4edd65c4314d.jpeg)
+
+
 ## Functionalities in the website:
 - Search with auto complete from api.
 - Get must general news from api. 
