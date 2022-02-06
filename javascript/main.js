@@ -1,5 +1,5 @@
 //-------------------------Create Array & Attribute for localStorage-----------------------------
-
+let counter = 0
 let get, get2, savedAllData = []
 
 test =  JSON.parse(localStorage.getItem('savedData'));
@@ -16,15 +16,13 @@ if(test == null){
 
 //---------------------------- main & frist page data--------------------------------
 
-const URL = 'https://saurav.tech/NewsAPI/top-headlines/category/general/us.json' // اذا مافي افضل بعتمده ممتاز
+const URL = 'https://saurav.tech/NewsAPI/top-headlines/category/general/us.json' 
 
 fetch(URL)
 .then(function(response) {
     return response.json()})
     .then(function (json) { 
-     
-      console.log(json)
- 
+
        update(json)
 
     })
@@ -40,11 +38,6 @@ fetch(URL)
     for(let i=0 ; i< params.articles.length ; i++){
     
     if((params.articles[i].title != null) && (params.articles[i].author != null) && (params.articles[i].source.name != null)){
-
-   
-
-      
-
    
     const div1 = document.createElement('div')
     div1.className = "col Sh-card"
@@ -52,7 +45,6 @@ fetch(URL)
 
     news.append(div1)
 
-   
     const div2 = document.createElement('div')
     div2.className = "card shadow-sm"
     div1.append(div2)
@@ -65,12 +57,21 @@ fetch(URL)
     image.src = params.articles[i].urlToImage
     div2.append(image)
 
+
+    if( counter < 3){
+    counter++
+    const tagNew = document.createElement('div')
+    tagNew.className = "badge bg-danger tag-new"
+    tagNew.innerHTML = "new"
+    div2.append(tagNew)
+    }
+
     const div4 = document.createElement('div')
     div4.className = "card-body"
     div2.append(div4)
 
     const h4 = document.createElement('h4')
-    h4.class = "card-text"
+    h4.className = "title-text"
     h4.innerHTML = params.articles[i].title
     div4.append(h4)
 
@@ -85,8 +86,8 @@ fetch(URL)
     div4.append(pA)  
 
     const pB = document.createElement('p')
-    pB.className = "card-text publishedAt"
-    pB.innerHTML =  "published At : " + new Date().toLocaleDateString('en-ZA' ,params.articles[i].publishedAt)
+    pB.className = "card-text publishedAt"  
+    pB.innerHTML =  "published At : " +  new Date(params.articles[i].publishedAt).toLocaleDateString('en-ZA' , params.articles[i].publishedAt)
     div4.append(pB)   
 
    
@@ -95,16 +96,15 @@ fetch(URL)
     div4.append(div5)
 
 
-    
     const div6 = document.createElement('div')
     div6.className = "btn-group"
     div5.append(div6)
-
-
-    
-    const button = document.createElement('button') 
+   
+    const button = document.createElement('a') 
     button.className = "btn btn-outline-primary "
     button.type = "button" 
+    button.href = params.articles[i].url
+    button.target = "_blank"
     button.innerHTML = "Read more" 
     button.id = "Read-more" + i
     div6.append(button) 
@@ -115,12 +115,6 @@ fetch(URL)
     button2.innerHTML = "Favorite"
     div6.append(button2) 
 
-
-    button.onclick = function () {
-        // alert( params.articles[i].content);
-
-        
-    }
 
     button2.onclick = function () {
 
@@ -133,7 +127,10 @@ fetch(URL)
          let node6 = node4.parentNode
          let node7 = node6.children
          let img = node7[0].currentSrc
-        
+
+         let nodeUrl =  node4.childNodes[4]
+         let nodeUrl2 = nodeUrl.childNodes[0]
+      
 
     const Favorite = {
 
@@ -141,7 +138,8 @@ fetch(URL)
         title : node4.childNodes[0].innerHTML,
         author : node4.childNodes[1].innerHTML,
         source : node4.childNodes[2].innerHTML,
-        publishedAt : node4.childNodes[3].innerHTML
+        publishedAt : node4.childNodes[3].innerHTML,
+        url: nodeUrl2.childNodes[0].href
     }
 
 
@@ -150,7 +148,6 @@ fetch(URL)
 
 
       }
-
 
     }
 
@@ -161,18 +158,14 @@ fetch(URL)
 
 function category(category){
 
- 
+    counter=0
+
     fetch(`https://saurav.tech/NewsAPI/top-headlines/category/${category}/us.json`)
     .then(function(response) {
         return response.json()})
         .then(function (json) { 
-         
-          console.log(json)
-         
-
-           update(json)
-    
-       
+      
+           update(json)     
 
   });
 }
@@ -183,62 +176,49 @@ document.querySelector('#search').addEventListener('click', (e)=>{
 
     e.preventDefault()
 
-    
+     let Countries  = document.querySelector(".d-flex").elements.item(0).value.toLowerCase();
 
-     let Countries  = document.querySelector(".d-flex").elements.item(0).value;
-
-
-
-
-     if(Countries === "India"){
+     if(Countries === "india"){
 
         Countries = "in"
 
-     }else if(Countries === "USA"){
+     }else if(Countries === "usa"){
 
         Countries = "us"
-
-     }else if(Countries === "Australia"){
+        
+     }else if(Countries === "australia"){
 
         Countries = "au"
 
-     }else if(Countries === "Russia"){
+     }else if(Countries === "russia"){
 
         Countries = "ru"
 
-     }else if(Countries === "France"){
+     }else if(Countries === "france"){
 
         Countries = "fr"
 
-     }else if(Countries === "United Kingdom"){
+     }else if(Countries === "united kingdom" || Countries === "uk"){
 
         Countries = "gb"
 
      }else{
 
-        alert("Countries available for search : \n \n India \n USA \n Australia \n Russia \n France \n United Kingdom")
-        return 0
+
+        alert(" Countries available for search : \n India \n USA \n Australia \n Russia \n France \n United Kingdom ")
      }
-
-
- 
 
 
         fetch(`https://saurav.tech/NewsAPI/top-headlines/category/general/${Countries}.json`)
         .then(function(response) {
             return response.json()})
-            .then(function (json) { 
-             
-              console.log(json)
-             
+            .then(function (json) {   
     
                update(json)
-
               
 });
 
 });
-
 
 
 
@@ -275,7 +255,7 @@ function Favorite(){
         div2.append(div4)
     
         const h4 = document.createElement('h4')
-        h4.class = "card-text"
+        h4.className = "title-text"
         h4.innerHTML =  get[i].title
         div4.append(h4)
     
@@ -305,11 +285,13 @@ function Favorite(){
         div6.className = "btn-group"
         div5.append(div6)
     
-    
 
-    const button = document.createElement('button')
+
+    const button = document.createElement('a')
     button.className = "btn btn-primary "
     button.innerHTML = "Read more" 
+    button.target = "_blank"
+    button.href = get[i].url
     button.id = "Read-more" + i
     div4.append(button) 
 
@@ -321,13 +303,6 @@ function Favorite(){
     div4.append(button3) 
 
 
-
-
-    button.onclick = function () {
-
-        alert( params.articles[i].content);
-
-    }
 
     button3.onclick = function () {
 
@@ -350,9 +325,9 @@ function Favorite(){
 
 
         
-}
+        }
 
-}
+    }
 }
 
 //---------------------------scrolls TOP------------------------------------
