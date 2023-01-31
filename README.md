@@ -5,7 +5,7 @@ Live News shows tracking and explore.
 
 
 # Links:
-Project Link: [LIVE NEWS](https://abdullahalhussein.github.io/News/)
+Project Link: [LIVE NEWS](https://abdullahalhussein.github.io/Responsive-LIVE-NEWS-Web-Application/)
 
 
 <img src="https://user-images.githubusercontent.com/70335592/138341846-5dba58b9-5918-4842-a1fa-4edd65c4314d.jpeg" alt="drawing" style="width:400px;"/>
